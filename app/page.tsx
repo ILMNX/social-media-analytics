@@ -1,5 +1,5 @@
 import { db } from "@/src/db";
-import { usersTable } from "@/src/db/schema";
+import { authTable, usersTable } from "@/src/db/schema";
 import { postsTable } from "@/src/db/schema";
 import Image from "next/image";
 
@@ -25,6 +25,12 @@ export default async function Home() {
           content : "Hello World",
           title : "First Post",
           userId : 1,
+        })
+        await db.insert (authTable).values({
+          id : 1,
+          email : "admin@gmail.com",
+          password : "123",
+          username : "admin",
         })
       }}
       
