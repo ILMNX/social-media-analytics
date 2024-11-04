@@ -29,7 +29,7 @@ export async function POST(req: Request) {
 
     // Here you would typically create a session or JWT token
     return NextResponse.json({ message: 'Login successful' });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: 'Login failed' },
       { status: 500 }

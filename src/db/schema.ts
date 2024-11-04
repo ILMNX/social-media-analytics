@@ -1,8 +1,5 @@
-import { create } from 'domain';
 import { sql } from 'drizzle-orm';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
-
-
 
 export const usersTable = sqliteTable('users', {
   id: integer('id').primaryKey(),
@@ -25,17 +22,15 @@ export const postsTable = sqliteTable('posts', {
 });
 
 export const authTable = sqliteTable('auth', {
-    id: integer('id').primaryKey(),
-    username : text('username').notNull(),
-    email: text('email').notNull().unique(),
-    password: text('password').notNull(),
-    createdAt: text('created_at')
-        .default(sql`(CURRENT_TIMESTAMP)`)
-        .notNull(),
-    updatedAt: text('updated_at')
-        .default(sql`(CURRENT_TIMESTAMP)`)
-        .notNull(),
+  id: integer('id').primaryKey(),
+  email: text('email').unique().notNull(),
+  password: text('password').notNull(),
+  username: text('username').notNull(),
+  createdAt: text('created_at')
+    .default(sql`(CURRENT_TIMESTAMP)`)
+    .notNull(),
 });
+
 export type InsertUser = typeof usersTable.$inferInsert;
 export type SelectUser = typeof usersTable.$inferSelect;
 
